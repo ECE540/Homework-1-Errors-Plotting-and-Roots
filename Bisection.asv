@@ -1,0 +1,7 @@
+function [bestGuess, numIters] = Bisection(func, lowerBound, upperBound, maxFinalBracket)
+%
+% [bestGuess, numIters] = Bisection(func, lowerBound, upperBound, maxFinalBracket)
+%
+% This function will perform the root finding method of bisection.
+end
+

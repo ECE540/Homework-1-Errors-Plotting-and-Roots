@@ -1,0 +1,1 @@
+[bestGuess, numIters] = Bisection(@MonthlyLoanPayment(25000, interest, 60), 1, 35, 1);
