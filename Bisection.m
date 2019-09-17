@@ -12,10 +12,8 @@ function [bestGuess, numIters] = Bisection(func, lowerBound, upperBound, maxFina
 %       bestGuess   -   final guess of the root
 %       numIters    -   number of iterations to find bestGuess
 
-%Find the middle point between the two numbers
-bestGuess = (lowerBound + upperBound) / 2;
+%numIters = 0;
 
-
-
-end
-
+%Just some test cases
+numIters = func(lowerBound);
+bestGuess = func(upperBound);

@@ -1,19 +1,22 @@
-function [monthly] = MonthlyLoanPayment(principal, interest, numMonths)
+function [distance] = MonthlyLoanPayment(interest)
 %
-% [monthly] = MonthlyLoanPayment(principal, interest, numMonths)
+% [distance] = MonthlyLoanPayment(interest)
 %
-% Calculates the monthly payment on a loan
+% Calculates how many dollars off from the desired monthly rate will be
+% give a specific interest rate.
 % Input:
-%       pricipal        -   the size of the loan
 %       interest        -   yearly interest rate (%)
-%       numMonths       -   number of months to be spent paying off loan
 % Output:
-%       monthly         -   monthly payment
+%       distance        -   how far off from desired interest rate
+
+principal = 25000;
+numMonths = 60;
+payment = 625;
 
 rate = interest / 1200;
 
-%Use the monthly interest formula and calculate the result
-monthly = (principal * rate) / (1 - (1 + rate)^(-1 * numMonths)); 
+%Use the monthly interest formula - desired rate and calculate the result
+distance = (principal * rate) / (1 - (1 + rate)^(-1 * numMonths)) - payment; 
 
 end
 
