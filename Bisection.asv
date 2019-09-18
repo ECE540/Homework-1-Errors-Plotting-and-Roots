@@ -2,6 +2,35 @@ function [bestGuess, numIters] = Bisection(func, lowerBound, upperBound, maxFina
 %
 % [bestGuess, numIters] = Bisection(func, lowerBound, upperBound, maxFinalBracket)
 %
-% This function will perform the root finding method of bisection.
+% This function will perform the root finding method of bisection. 
+% Input:
+%       func        -   the function which the root should be found of
+%       lowerBound  -   the bottom starting value
+%       upperBound  -   the upper starting value
+%       maxFinalBracket -   error or how method knows when it is "good"
+% Output:
+%       bestGuess   -   final guess of the root
+%       numIters    -   number of iterations to find bestGuess
+
+% number of times the loop must run through
+numIters = 0;
+
+% keep track of current point lowerBound is at on function
+lower = func(lowerBound);
+
+% function loops until bounds are below specified threshold
+while ((upperBound - lowerBound) > maxFinalBracket)
+    numIters = numIters + 1;
+    bestGuess = (upperBound - lowerBound) / 2;
+    curGuess = func(bestGuess);
+    
+    % Determine which side of the point guess falls on
+    if ((lower * curGuess) > 0) % same side of point
+        lower = curGuess;
+        lowerBound = bestGuess;
+    else
+        upperBound = bestGuess;
+    end
 end
 
+end

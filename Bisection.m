@@ -12,8 +12,25 @@ function [bestGuess, numIters] = Bisection(func, lowerBound, upperBound, maxFina
 %       bestGuess   -   final guess of the root
 %       numIters    -   number of iterations to find bestGuess
 
-%numIters = 0;
+% number of times the loop must run through
+numIters = 0;
 
-%Just some test cases
-numIters = func(lowerBound);
-bestGuess = func(upperBound);
+% keep track of current point lowerBound is at on function
+lower = func(lowerBound);
+
+% function loops until bounds are below specified threshold
+while ((upperBound - lowerBound) > maxFinalBracket)
+    numIters = numIters + 1;
+    bestGuess = (upperBound + lowerBound) / 2;
+    curGuess = func(bestGuess);
+    
+    % Determine which side of the point guess falls on
+    if ((lower * curGuess) > 0) % same side of point
+        lower = curGuess;
+        lowerBound = bestGuess;
+    else
+        upperBound = bestGuess;
+    end
+end
+
+end

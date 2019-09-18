@@ -1,8 +1,38 @@
 principal = 25000;
 numMonths = 60;
-func = (principal * rate) / (1 - (1 + rate)^(-1 * numMonths)) - monthly; 
+payment = 625;
 
-lowerBound = .01;
-upperBound = 
+%Use the monthly interest formula - desired rate and calculate the result
+func = @(interest) (principal * interest / 1200) / ...
+    (1 - (1 + interest / 1200)^(-1 * numMonths)) - payment; 
 
-[bestGuess, numIters] = Bisection(func, lowerBound, upperBound, maxFinalBracket)
+%Determines where the function is equal to zero with bracket of 1
+tic
+[bestGuess, numIters] = Bisection(func, 1, 35, 1);
+toc
+fprintf("The best guess is: %d\nNumber of iterations is: %d\n\n",...
+    bestGuess, numIters);
+
+clear
+
+principal = 25000;
+numMonths = 60;
+payment = 625;
+
+%Use the monthly interest formula - desired rate and calculate the result
+func = @(interest) (principal * interest / 1200) / ...
+    (1 - (1 + interest / 1200)^(-1 * numMonths)) - payment; 
+
+%Do again with bracket of .1
+tic
+[bestGuess, numIters] = Bisection(func, 1, 35, .1);
+toc
+fprintf("The best guess is: %d\nNumber of iterations is: %d\n\n",...
+    bestGuess, numIters);
+
+%Do again with bracket of .01
+tic
+[bestGuess, numIters] = Bisection(func, 1, 35, .01);
+toc
+fprintf("The best guess is: %d\nNumber of iterations is: %d\n\n",...
+    bestGuess, numIters);
